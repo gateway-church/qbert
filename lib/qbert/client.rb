@@ -12,16 +12,32 @@ module Qbert
     end
 
     def put_message(message = "")
-      @action_result = client.send_message message_hash(message)
+      @action_result = client.send_message message_params({message_body: message})
+    end
+
+    def get_messages()
+      result = client.receive_message(message_params({max_number_of_messages: 10}))
+
+      result.messages.map do |message|
+        client.delete_message(message_params({receipt_handle: message.receipt_handle}))
+        message.body
+      end
     end
 
     private
 
-    def message_hash(message)
+    def message_params params={}
       {
-        queue_url: Qbert.configurable.queue_url,
-        message_body: message,
-      }
+        queue_url: queue_url
+      }.merge(params)
+    end
+
+    def queue_url
+      Qbert.configurable.queue_url
+    end
+
+    def messages
+      @action_result.messages.map { |message| message.body }
     end
   end
 end
