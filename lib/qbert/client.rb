@@ -11,13 +11,12 @@ module Qbert
                                      credentials: Qbert.configurable.credentials
     end
 
-    def put_message(message = "")
+    def put_message(message)
       @action_result = client.send_message message_params({message_body: message})
     end
 
     def get_messages()
       result = client.receive_message(message_params({max_number_of_messages: 10}))
-
       result.messages.map do |message|
         client.delete_message(message_params({receipt_handle: message.receipt_handle}))
         message.body

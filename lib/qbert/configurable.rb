@@ -4,8 +4,7 @@ require "aws-sdk-sqs"
 
 module Qbert
   class Configurable
-    attr_accessor :queue_url, :region
-    attr_writer :access_key_id, :secret_access_key
+    attr_accessor :queue_url, :region, :access_key_id, :secret_access_key
 
     def credentials
       (@credentials || aws_credentials)
