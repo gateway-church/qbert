@@ -12,7 +12,7 @@ module Qbert
     end
 
     def put_message(message)
-      @action_result = client.send_message message_params({message_body: message})
+      client.send_message message_params({message_body: message})
     end
 
     def get_messages()
