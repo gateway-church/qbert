@@ -21,5 +21,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency 'pry-byebug', '~> 3.9'
   spec.add_dependency "aws-sdk-sqs", "~> 1.36"
 end
