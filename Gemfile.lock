@@ -1,14 +1,14 @@
 PATH
   remote: .
   specs:
-    qbert (0.1.0)
+    qbert (0.1.1)
       aws-sdk-sqs (~> 1.36)
 
 GEM
   remote: https://rubygems.org/
   specs:
     aws-eventstream (1.1.0)
-    aws-partitions (1.425.0)
+    aws-partitions (1.428.0)
     aws-sdk-core (3.112.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
