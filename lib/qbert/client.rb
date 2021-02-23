@@ -4,11 +4,12 @@ require "aws-sdk-sqs"
 
 module Qbert
   class Client
-    attr_reader :client, :action_result
+    attr_reader :client, :action_result, :queue_url
 
-    def initialize
+    def initialize queue_url = nil
       @client = Aws::SQS::Client.new region: Qbert.configurable.region,
                                      credentials: Qbert.configurable.credentials
+      @queue_url = queue_url || Qbert.configurable.queue_url
     end
 
     def put_message(message)
@@ -29,10 +30,6 @@ module Qbert
       {
         queue_url: queue_url
       }.merge(params)
-    end
-
-    def queue_url
-      Qbert.configurable.queue_url
     end
 
     def messages
