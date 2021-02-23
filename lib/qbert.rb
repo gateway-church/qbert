@@ -8,16 +8,16 @@ module Qbert
   class Error < StandardError; end
 
   class << self
-    def put_message message
-      client.put_message message
+    def put_message message, queue_url = nil
+      client(queue_url).put_message message
     end
 
-    def get_messages
-      client.get_messages
+    def get_messages queue_url = nil
+      client(queue_url).get_messages
     end
 
-    def client
-      Client.new
+    def client queue_url = nil
+      Client.new queue_url
     end
   end
 end
